@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная 9</title>
+    <link rel="stylesheet" media="screen" href="./styles/styles.css" >
+</head>
+<body>
+<div class="container">
+  <form action="./cgi-bin/main.py">
+    <ul class="flex-outer">
+      <li>
+        <label for="in_name_id">Введите имя</label>
+        <input type="text" id="in_name_id" placeholder="Имя" name="in_name" class="text-field_input">
+      </li>
+      <li>
+        <label for="select_func1_id">Выберите действие для функции первой группы</label>
+        <select id="select_func1_id" name="select_func1" class="select-css">
+            <option>выполнить</option>
+            <option>не выполнять</option>
+        </select>
+      </li>
+        <li>
+        <label for="select_func2_id">Выберите действие для функции второй группы</label>
+        <select id="select_func2_id" name="select_func2" class="select-css">
+            <option>выполнить</option>
+            <option>не выполнять</option>
+        </select>
+      </li>
+        <li>
+        <label for="select_func3_id">Выберите действие для функции третьей группы</label>
+        <select id="select_func3_id" name="select_func3" class="select-css">
+            <option>выполнить</option>
+            <option>не выполнять</option>
+        </select>
+        </li>
+        <li>
+        <button type="submit">Отправить данные</button>
+      </li>
+    </ul>
+  </form>
+</div>
+</body>
+</html>
