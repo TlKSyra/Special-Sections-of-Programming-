@@ -3,21 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Лабораторная 10</title>
-    <link rel="stylesheet" media="screen" href="./styles/styles.css" >
+    <link rel="stylesheet" media="screen" href="../styles/styles.css" >
+ <script>
+    var answer='', name=''
+
+    function getform()
+    {
+        let xhrForm=new XMLHttpRequest();
+        xhrForm.onerror=function(e) {
+            myDiv.innerHTML+=" Ошибка получения данных из сервера";
+        }
+
+        xhrForm.onload=function()
+        {
+            myDiv=document.getElementById("form");
+            resp=this.responseText;
+            myDiv.innerHTML=resp;
+        }
+
+        name=document.getElementById('in_name_id').value
+        if (name)
+        {
+            xhrForm.open('GET','http://localhost:8000/cgi-bin/form.py?r='+ Math.random() + '&in_name=' + name);
+		    xhrForm.send(null);
+        }
+		else alert("Имя не введено");
+    }
+
+    xhr=new XMLHttpRequest();
+
+    function subm1() {
+          s = document.getElementById('test').name
+				answer = prompt(s);
+				if (answer) {
+					xhr.open('GET','http://localhost:8000/cgi-bin/test.py?r='+ Math.random()+'&answer='+answer);
+					xhr.send(null);
+				}
+				else alert("Ответ не указан")
+    }
+
+
+    function start()
+    {
+		xhr.open('GET','http://localhost:8000/cgi-bin/test.py?r='+ Math.random()+'&start='+'true');
+		xhr.send(null);
+    }
+
+    xhr.onerror=function(e) {
+		myDiv.innerHTML+=" Ошибка получения данных из сервера";
+	}
+
+	xhr.onload=function()
+	{
+	  myDiv=document.getElementById("div");
+      resp=this.responseText;
+      myDiv.innerHTML=resp;
+	}
+  </script>
 </head>
 <body>
-<div class="container">
-  <form action="./cgi-bin/form.py">
+<div class="container" id="form">
     <ul class="flex-outer">
       <li>
         <label for="in_name_id">Введите имя</label>
         <input type="text" id="in_name_id" placeholder="Имя" name="in_name" class="text-field_input">
       </li>
         <li>
-        <button type="submit" >Отправить данные</button>
+        <button onclick="getform()" >Отправить данные</button>
       </li>
     </ul>
-  </form>
 </div>
 </body>
 </html>
